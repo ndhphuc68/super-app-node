@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
       message: "Content can not be empty!",
     });
   }
-  User.findOne({ id: req.body.username })
+  User.findOne({ username: req.body.username })
     .then((data) => {
       if (data) {
         var passwordIsValid = bcrypt.compare(req.body.password, data.password);
