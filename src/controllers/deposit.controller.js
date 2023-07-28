@@ -7,6 +7,24 @@ const depositHistoryService = require("../services/DepositHistory.service");
 const { status } = require("../const/status");
 const { returnRes } = require("../utils");
 
+exports.getListDepositHistory = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      res
+        .status(400)
+        .send({ success: false, message: "Content can not be empty!" });
+    }
+
+    const listDeposit = await depositHistoryService.findDepositHistory({
+      username: req.params.id,
+    });
+
+    returnRes(res, "success", true, listDeposit);
+  } catch (e) {
+    returnRes(res, "false", false, null);
+  }
+};
+
 exports.createDepositHistory = async (req, res) => {
   try {
     if (!req.body) {

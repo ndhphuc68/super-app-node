@@ -50,6 +50,7 @@ exports.findDepositHistoryByUserNameAndStatus = async (val) => {
 exports.findDepositHistory = async (val) => {
   let dataReturn = null;
   await DepositHistory.find(val)
+    .sort({ createdAt: -1 })
     .then(async (value) => {
       if (value) {
         dataReturn = value;

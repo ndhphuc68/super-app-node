@@ -8,5 +8,7 @@ module.exports = (app) => {
 
   router.post("/update", depositController.updateStatusDeposit);
 
+  router.get("/getList/:id", depositController.getListDepositHistory);
+
   app.use("/api/v1/deposit", [authJwt], router);
 };
