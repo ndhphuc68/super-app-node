@@ -1,7 +1,10 @@
 const bcrypt = require("bcrypt");
 const db = require("../model");
 const User = db.user;
-const userService = require("../services/user.service");
+const UserMoney = db.usermoney;
+
+const userService = require("../services/User.service");
+const userMoneyService = require("../services/UserMoney.service");
 
 exports.createUser = async (req, res) => {
   if (!req.body) {
@@ -22,7 +25,20 @@ exports.createUser = async (req, res) => {
     });
     const val = await userService.createUser(newUser);
     if (val) {
-      res.status(200).send({ success: true, data: val, message: "Success!" });
+      const userMoney = new UserMoney({
+        username: req.body.username,
+        createDate: new Date(),
+        money: 0,
+      });
+      let check = await userMoneyService.createUserMoney(userMoney);
+      if (check) {
+        res.status(200).send({ success: true, data: val, message: "Success!" });
+      } else {
+        res.status(200).send({
+          message: "Lỗi tạo tài khoản",
+          success: false,
+        });
+      }
     } else {
       res.status(500).send({
         message: "ERRR",

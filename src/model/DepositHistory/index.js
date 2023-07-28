@@ -2,12 +2,8 @@ module.exports = (mongoose) => {
   const schema = mongoose.Schema(
     {
       username: String,
-      fistName: String,
-      lastName: String,
-      phone: String,
-      email: String,
-      gender: String,
-      password: String,
+      moneyRequest: Number,
+      status: String,
     },
     { timestamps: true },
   );
@@ -18,5 +14,5 @@ module.exports = (mongoose) => {
     return object;
   });
 
-  return mongoose.model("user", schema);
+  return mongoose.model("depositHistory", schema);
 };

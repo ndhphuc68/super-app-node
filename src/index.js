@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: true,
-  })
+  }),
 );
 
 // enabling CORS for all requests
@@ -37,6 +37,7 @@ db.mongoose
 
 require("./routers/user.routes")(app);
 require("./routers/auth.routes")(app);
+require("./routers/deposit.routes")(app);
 
 // starting the server
 app.listen(3001, () => {

@@ -6,7 +6,6 @@ exports.createUser = async (user) => {
   await User.create(user)
     .then((val) => {
       val.password = null;
-      console.log(val);
       dataReturn = val;
     })
     .catch((err) => {
