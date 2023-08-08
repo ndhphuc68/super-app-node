@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 const config = require("../../config/auth.config.js");
 const userService = require("../../services/User.service.js");
-const { status } = require("../../const/status");
+const { role } = require("../../const/role");
 
-const verifyToken = (req, res, next) => {
+const verifyTokenRole = (req, res, next) => {
   try {
     const token = req.header("Authorization")?.replace("Bearer ", "");
     if (!token) {
@@ -20,10 +20,7 @@ const verifyToken = (req, res, next) => {
       });
     }
 
-    const user = userService.findUser({
-      username: data.id,
-      status: status.ACCEPT,
-    });
+    const user = userService.findUser({ username: data.id, role: role.ADMIN });
     if (user) {
       next();
     } else {
@@ -34,4 +31,4 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = verifyToken;
+module.exports = verifyTokenRole;

@@ -35,9 +35,7 @@ db.mongoose
     process.exit();
   });
 
-require("./routers/user.routes")(app);
-require("./routers/auth.routes")(app);
-require("./routers/deposit.routes")(app);
+require("./routers")(app);
 
 // starting the server
 app.listen(3001, () => {

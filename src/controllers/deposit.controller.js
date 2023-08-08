@@ -1,6 +1,5 @@
 const db = require("../model");
 const DepositHistory = db.deposithistory;
-const UserMoney = db.usermoney;
 
 const userMoneyService = require("../services/UserMoney.service");
 const depositHistoryService = require("../services/DepositHistory.service");
