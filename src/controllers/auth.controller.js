@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
   }
 
   const user = await userService.findUser({
-    username: req.body.account,
+    username: req.body.username,
     role: role.USER,
   });
 
