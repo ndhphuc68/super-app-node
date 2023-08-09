@@ -48,6 +48,7 @@ exports.login = async (req, res) => {
     const userRes = {
       id: user.id,
       token: token,
+      username: user.username,
     };
 
     res.status(200).send({

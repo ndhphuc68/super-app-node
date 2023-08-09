@@ -58,10 +58,10 @@ exports.createUser = async (req, res) => {
 };
 
 exports.findUser = async (req, res) => {
-  if (!req.query.id) {
+  if (!req.query.username) {
     res.status(400).send({ success: false, message: "Méo mà đòi get!" });
   }
-  const user = await userService.findUser({ id: req.query.id });
+  const user = await userService.findUser({ username: req.query.username });
   const userMoney = await userMoneyService.findUserMoney({
     username: user.username,
   });
