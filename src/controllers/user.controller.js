@@ -59,6 +59,10 @@ exports.findUser = async (req, res) => {
     res.status(400).send({ success: false, message: "Méo mà đòi get!" });
   }
   const user = await userService.findUser({ id: req.query.id });
+  const userMoney = await userMoneyService.findUserMoney({
+    username: user.username,
+  });
+  console.log(userMoney);
   if (user) {
     const data = {
       username: user.username,
@@ -69,6 +73,7 @@ exports.findUser = async (req, res) => {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
       id: user.id,
+      money: userMoney[0].money,
     };
     res.status(200).send({ success: true, data: data, message: "Success!" });
   } else {
