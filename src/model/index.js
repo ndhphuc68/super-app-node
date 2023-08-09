@@ -11,5 +11,6 @@ db.user = require("./Users")(mongoose);
 db.usermoney = require("./UserMoney")(mongoose);
 db.deposithistory = require("./DepositHistory")(mongoose);
 db.helpCenter = require("./HelpCenter")(mongoose);
+db.nef = require("./Nef")(mongoose);
 
 module.exports = db;
