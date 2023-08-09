@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
       username: req.body.username,
       password: await bcrypt.hash(req.body.password, 10),
       createDate: new Date(),
-      fistName: req.body.fistName,
+      firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       phone: req.body.phone,
@@ -62,11 +62,10 @@ exports.findUser = async (req, res) => {
   const userMoney = await userMoneyService.findUserMoney({
     username: user.username,
   });
-  console.log(userMoney);
   if (user) {
     const data = {
       username: user.username,
-      fistName: user.fistName,
+      firstName: user.firstName,
       lastName: user.lastName,
       phone: user.phone,
       email: user.email,
