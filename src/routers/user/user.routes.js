@@ -3,7 +3,7 @@ module.exports = (app) => {
   const { authJwt } = require("../../middleware");
   const router = require("express").Router();
 
-  router.get("/info/:id", userController.findUser);
+  router.get("/info", userController.findUser);
 
   app.use("/api/v1/users", [authJwt], router);
 };

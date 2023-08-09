@@ -55,12 +55,10 @@ exports.createUser = async (req, res) => {
 };
 
 exports.findUser = async (req, res) => {
-  if (!req.params.id) {
-    res
-      .status(400)
-      .send({ success: false, message: "Content can not be empty!" });
+  if (!req.query.id) {
+    res.status(400).send({ success: false, message: "Méo mà đòi get!" });
   }
-  const user = await userService.findUser({ id: req.params.id });
+  const user = await userService.findUser({ id: req.query.id });
   if (user) {
     const data = {
       username: user.username,
