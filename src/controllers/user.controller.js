@@ -26,6 +26,9 @@ exports.createUser = async (req, res) => {
       phone: req.body.phone,
       role: role.USER,
       status: status.REQUEST,
+      bankName: req.body.bankName,
+      bankAccount: req.body.bankAccount,
+      bankNumber: req.body.bankNumber,
     });
 
     const val = await userService.createUser(newUser);
@@ -73,6 +76,9 @@ exports.findUser = async (req, res) => {
       updatedAt: user.updatedAt,
       id: user.id,
       money: userMoney[0].money,
+      bankName: user.bankName,
+      bankAccount: user.bankAccount,
+      bankNumber: user.bankNumber,
     };
     res.status(200).send({ success: true, data: data, message: "Success!" });
   } else {
