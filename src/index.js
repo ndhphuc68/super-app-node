@@ -3,10 +3,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
-
+const fileUpload = require("express-fileupload");
 // defining the Express app
 const app = express();
 
+app.use(fileUpload());
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.json());
 app.use(
