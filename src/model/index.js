@@ -8,9 +8,6 @@ db.mongoose = mongoose;
 mongoose.set("strictQuery", true);
 db.url = dbConfig.uri;
 db.user = require("./Users")(mongoose);
-db.usermoney = require("./UserMoney")(mongoose);
-db.deposithistory = require("./DepositHistory")(mongoose);
-db.helpCenter = require("./HelpCenter")(mongoose);
-db.nef = require("./Nef")(mongoose);
+db.token = require("./TokenFirebase")(mongoose);
 
 module.exports = db;

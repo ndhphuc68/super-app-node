@@ -9,10 +9,7 @@ module.exports = (mongoose) => {
       gender: String,
       password: String,
       role: String,
-      status: String,
-      bankName: String,
-      bankAccount: String,
-      bankNumber: String,
+      
     },
     { timestamps: true },
   );

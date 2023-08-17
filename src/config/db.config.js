@@ -1,4 +1,7 @@
 module.exports = {
-  uri: "mongodb+srv://ndhphuc:uVIxHtVzQwGGCBUV@cluster0.f72qvvk.mongodb.net/?retryWrites=true&w=majority",
+  uri: "mongodb+srv://ndanghoangphuc:cDkXrhdBFvkLu81X@cluster0.1bturwr.mongodb.net/?retryWrites=true&w=majority",
 };
 /// uVIxHtVzQwGGCBUV
+
+
+// mongodb+srv://ndanghoangphuc:cDkXrhdBFvkLu81X@cluster0.1bturwr.mongodb.net/

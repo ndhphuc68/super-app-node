@@ -2,10 +2,9 @@ module.exports = (mongoose) => {
   const schema = mongoose.Schema(
     {
       username: String,
-      moneyRequest: Number,
-      status: String,
+      token: String,
     },
-    { timestamps: true },
+    { timestamps: true }
   );
 
   schema.method("toJSON", function () {
@@ -14,5 +13,5 @@ module.exports = (mongoose) => {
     return object;
   });
 
-  return mongoose.model("depositHistory", schema);
+  return mongoose.model("token", schema);
 };
