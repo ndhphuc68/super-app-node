@@ -14,7 +14,8 @@ exports.sendPushNotification = (fcm_token, title, body) => {
           body: body,
         },
       },
-      token: fcm_token,
+      token:
+        "dJ8Ug2OvTcO-P4QOAO2u3V:APA91bEJ98dMUL0eknq1koQSA3RRBUd7-wdoFSIF6ln_mNMVFBfWtLwIDlIhKr423NEFMVC6HzPWpqp9E0kke1C2F6ckZ0MAOBmH1vWn2JDCbOgfTBoDS1vC3GvOnuZZ6Ktq6uCYJjwT",
     };
 
     FCM.send(message, function (err, resp) {

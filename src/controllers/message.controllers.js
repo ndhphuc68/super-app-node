@@ -3,6 +3,7 @@ const Message = db.message;
 
 const messageService = require("../services/Message.service");
 const userService = require("../services/User.service");
+const pushNotication = require("../plugins/NotificationFirebase");
 
 exports.createMessage = async (req, res) => {
   try {
@@ -21,6 +22,7 @@ exports.createMessage = async (req, res) => {
     const messageOb = await messageService.createMessage(message);
 
     if (messageOb) {
+      pushNotication.sendPushNotification("1", "test", "1223232");
       res
         .status(200)
         .send({ success: true, data: messageOb, message: "Success!" });
