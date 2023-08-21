@@ -19,6 +19,11 @@ app.use(
 // enabling CORS for all requests
 app.use(cors());
 
+app.get("/image/:image", (req, res) => {
+  const imagePath = `/upload/${req.params.image}`;
+  res.sendFile(__dirname + imagePath);
+});
+
 // adding morgan to log HTTP requests
 app.use(morgan("combined"));
 

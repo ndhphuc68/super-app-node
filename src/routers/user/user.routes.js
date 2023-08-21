@@ -5,5 +5,7 @@ module.exports = (app) => {
 
   router.get("/info", userController.getProfileUser);
 
+  router.post("/update", userController.updateProfile);
+  
   app.use("/api/v1/user", router);
 };

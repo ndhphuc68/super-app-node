@@ -9,9 +9,9 @@ module.exports = (mongoose) => {
       gender: String,
       password: String,
       role: String,
-      
+      image: String,
     },
-    { timestamps: true },
+    { timestamps: true }
   );
 
   schema.method("toJSON", function () {

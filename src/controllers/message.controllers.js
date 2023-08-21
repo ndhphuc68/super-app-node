@@ -2,6 +2,7 @@ const db = require("../model");
 const Message = db.message;
 
 const messageService = require("../services/Message.service");
+const userService = require("../services/User.service");
 
 exports.createMessage = async (req, res) => {
   try {
@@ -82,9 +83,29 @@ exports.getListUserSendMessage = async (req, res) => {
       toUser: req.query.username,
     });
 
-    res
+    if (listUser) {
+      let response = [];
+      for (const val in listUser) {
+        let user = await userService.findUser({ username: listUser[val] });
+        if (user) {
+          let data = {
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            image: user.image,
+            lastMessage: "Aloo đi nhậu",
+          };
+          response.push(data);
+        }
+      }
+      return res
+        .status(200)
+        .send({ success: true, data: response, message: "Success!" });
+    }
+
+    return res
       .status(200)
-      .send({ success: true, data: listUser, message: "Success!" });
+      .send({ success: true, data: [], message: "Success!" });
   } catch (error) {
     res.status(500).send({
       message: "ERRR1111",

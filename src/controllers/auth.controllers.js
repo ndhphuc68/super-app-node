@@ -71,7 +71,7 @@ exports.login = async (req, res) => {
       );
 
       if (!passwordIsValid) {
-        return res.status(401).send({
+        return res.status(200).send({
           message: "Invalid Password!",
           success: false,
           data: null,
