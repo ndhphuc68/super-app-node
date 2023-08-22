@@ -4,6 +4,7 @@ const Message = db.message;
 const messageService = require("../services/Message.service");
 const userService = require("../services/User.service");
 const pushNotication = require("../plugins/NotificationFirebase");
+const tokenService = require("../services/TokenFirebase.service");
 
 exports.createMessage = async (req, res) => {
   try {
@@ -22,7 +23,11 @@ exports.createMessage = async (req, res) => {
     const messageOb = await messageService.createMessage(message);
 
     if (messageOb) {
-      await pushNotication.sendNotification();
+      const token = await tokenService.findToken({ username: req.body.toUser });
+      if (token) {
+        await pushNotication.sendNotification(token.token);
+      }
+
       res
         .status(200)
         .send({ success: true, data: messageOb, message: "Success!" });

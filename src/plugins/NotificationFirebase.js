@@ -7,7 +7,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-exports.sendNotification = async () => {
+exports.sendNotification = async (token) => {
   const message = {
     notification: {
       title: "Notif",
@@ -16,8 +16,7 @@ exports.sendNotification = async () => {
     data: {
       message: "Message",
     },
-    token:
-      "de2EwCAlRb2n3Orvlf6EmZ:APA91bFO4AF6k8MDetgS6cu-ONkRftQz6z_AKjPPwzP0R8nvWL8fwoImgDvBsT6ZtiI9JWkz_ZIRilM08xcSsRGvJpK1gIa5cfWxXaNFrCmxKdCKlEoVsoVOS8TItv7Rj7JGdJD5JrCJ",
+    token: token,
   };
   getMessaging()
     .send(message)
