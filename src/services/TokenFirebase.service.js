@@ -13,15 +13,27 @@ exports.createToken = async (token) => {
   return dataReturn;
 };
 
-// exports.findToken = async (val) => {
-//   let dataReturn = null;
-//   await Token.findOne(val)
-//     .then(async (user) => {
-//       dataReturn = user;
-//     })
-//     .catch((err) => {});
-//   return dataReturn;
-// };
+exports.findToken = async (val) => {
+  let dataReturn = null;
+  await Token.findOne(val)
+    .then(async (user) => {
+      dataReturn = user;
+    })
+    .catch((err) => {});
+  return dataReturn;
+};
+
+exports.updateToken = async (val, newVal) => {
+  let dataReturn = null;
+  await Token.updateOne(val, { $set: newVal })
+    .then(async (data) => {
+      dataReturn = data;
+    })
+    .catch((err) => {
+      return null;
+    });
+  return dataReturn;
+};
 
 // exports.getAllUser = async (val) => {
 //   let dataReturn = null;

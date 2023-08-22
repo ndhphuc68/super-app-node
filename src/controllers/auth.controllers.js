@@ -83,10 +83,18 @@ exports.login = async (req, res) => {
         expiresIn: 9996400, // 24 hours
       });
 
-      const tokenOb = await tokenService.createToken({
+      const tokenUser = await tokenService.findToken({
         username: user.username,
-        token: req.body.token,
       });
+
+      if (tokenUser) {
+        await tokenService.updateToken(tokenUser, { token: req.body.token });
+      } else {
+        await tokenService.createToken({
+          username: user.username,
+          token: req.body.token,
+        });
+      }
 
       const userRes = {
         id: user.id,

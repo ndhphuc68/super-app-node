@@ -1,31 +1,31 @@
 var admin = require("firebase-admin");
-var fcm = require("fcm-notification");
-var serviceAccount = require("../supper-app-ca076-firebase-adminsdk-g2xt7-373b374d7f.json");
+var { getMessaging } = require("firebase-admin/messaging");
 
-const certPath = admin.credential.cert(serviceAccount);
-var FCM = new fcm(certPath);
+var serviceAccount = require("./serverfirebase.json");
 
-exports.sendPushNotification = (fcm_token, title, body) => {
-  try {
-    let message = {
-      android: {
-        notification: {
-          title: title,
-          body: body,
-        },
-      },
-      token:
-        "dJ8Ug2OvTcO-P4QOAO2u3V:APA91bEJ98dMUL0eknq1koQSA3RRBUd7-wdoFSIF6ln_mNMVFBfWtLwIDlIhKr423NEFMVC6HzPWpqp9E0kke1C2F6ckZ0MAOBmH1vWn2JDCbOgfTBoDS1vC3GvOnuZZ6Ktq6uCYJjwT",
-    };
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
-    FCM.send(message, function (err, resp) {
-      if (err) {
-        throw err;
-      } else {
-        console.log("Successfully sent notification");
-      }
+exports.sendNotification = async () => {
+  const message = {
+    notification: {
+      title: "Notif",
+      body: "ALo bố m tới chơi",
+    },
+    data: {
+      message: "Message",
+    },
+    token:
+      "de2EwCAlRb2n3Orvlf6EmZ:APA91bFO4AF6k8MDetgS6cu-ONkRftQz6z_AKjPPwzP0R8nvWL8fwoImgDvBsT6ZtiI9JWkz_ZIRilM08xcSsRGvJpK1gIa5cfWxXaNFrCmxKdCKlEoVsoVOS8TItv7Rj7JGdJD5JrCJ",
+  };
+  getMessaging()
+    .send(message)
+    .then((response) => {
+      // Response is a message ID string.
+      console.log("Successfully sent message:", response);
+    })
+    .catch((error) => {
+      console.log("Error sending message:", error);
     });
-  } catch (err) {
-    throw err;
-  }
 };

@@ -22,7 +22,7 @@ exports.createMessage = async (req, res) => {
     const messageOb = await messageService.createMessage(message);
 
     if (messageOb) {
-      pushNotication.sendPushNotification("1", "test", "1223232");
+      await pushNotication.sendNotification();
       res
         .status(200)
         .send({ success: true, data: messageOb, message: "Success!" });
