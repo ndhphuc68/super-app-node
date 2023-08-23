@@ -86,13 +86,21 @@ exports.getListUserSendMessage = async (req, res) => {
       });
     }
 
-    const listUser = await messageService.getListUser({
+    const listUserV2 = await messageService.getListUser("username", {
       toUser: req.query.username,
     });
 
+    const listUserV1 = await messageService.getListUser("toUser", {
+      username: req.query.username,
+    });
+
+    const listUser = [...listUserV1, ...listUserV2];
+
     if (listUser) {
+      const newList = unique(listUser);
+
       let response = [];
-      for (const val in listUser) {
+      for (const val in newList) {
         let user = await userService.findUser({ username: listUser[val] });
         if (user) {
           let data = {
@@ -120,3 +128,14 @@ exports.getListUserSendMessage = async (req, res) => {
     });
   }
 };
+
+function unique(arr) {
+  var formArr = arr.sort();
+  var newArr = [formArr[0]];
+  for (let i = 1; i < formArr.length; i++) {
+    if (formArr[i] !== formArr[i - 1]) {
+      newArr.push(formArr[i]);
+    }
+  }
+  return newArr;
+}

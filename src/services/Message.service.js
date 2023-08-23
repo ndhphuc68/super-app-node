@@ -23,9 +23,9 @@ exports.findListMessage = async (val) => {
   return dataReturn;
 };
 
-exports.getListUser = async (val) => {
+exports.getListUser = async (username, val) => {
   let dataReturn = null;
-  await Message.distinct("username", val)
+  await Message.distinct(username, val)
     .then(async (data) => {
       dataReturn = data;
     })

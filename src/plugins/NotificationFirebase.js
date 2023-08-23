@@ -7,7 +7,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-exports.sendNotification = async (token) => {
+exports.sendNotification = async (token, data) => {
   const message = {
     notification: {
       title: "Notif",
