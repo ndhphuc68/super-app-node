@@ -25,7 +25,7 @@ exports.createMessage = async (req, res) => {
     if (messageOb) {
       const token = await tokenService.findToken({ username: req.body.toUser });
       if (token) {
-        await pushNotication.sendNotification(token.token);
+        await pushNotication.sendNotification(token.token, messageOb);
       }
 
       res
@@ -64,7 +64,7 @@ exports.getListMessageUser = async (req, res) => {
     const listMessage = [...listMessageUser, ...listMessageToUser];
 
     let listMessageSort = listMessage.sort((a, b) => {
-      return new Date(b.createdAt) - new Date(a.createdAt);
+      return new Date(a.createdAt) - new Date(b.createdAt);
     });
 
     res

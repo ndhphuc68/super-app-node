@@ -15,6 +15,7 @@ exports.sendNotification = async (token, data) => {
     },
     data: {
       message: "Message",
+      bodyMessage: JSON.stringify(data),
     },
     token: token,
   };
